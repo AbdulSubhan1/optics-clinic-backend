@@ -1,5 +1,5 @@
 import { Injectable, ForbiddenException } from '@nestjs/common';
-import { AuthDto } from 'src/dto';
+import { AuthDto } from 'src/auth/dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import * as argon from 'argon2';
@@ -26,10 +26,7 @@ export class AuthService {
 
       const token = await this.signToken(user.id, user.email);
 
-      return {
-        success: true,
-        data: [{ accessToken: token }],
-      };
+      return [{ accessToken: token }];
     } catch (error) {
       if (error.code === 'P2002') {
         throw new ForbiddenException('user is already  exist');
@@ -58,10 +55,7 @@ export class AuthService {
 
       const token = await this.signToken(user.id, user.email);
 
-      return {
-        success: true,
-        data: [{ accessToken: token }],
-      };
+      return [{ accessToken: token }];
     } catch (error) {
       throw error;
     }

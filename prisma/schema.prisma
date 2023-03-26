@@ -19,7 +19,7 @@ model User {
   hash  String
 
   firstName String?
-  LastName  String?
+  lastName  String?
 
   @@map("users")
 }
@@ -28,10 +28,10 @@ model User {
 model Customer {
   id           Int       @id @default(autoincrement())
   name         String
-  phone_number String
+  phone_number String    @unique
   orders       Order[]
   created_at   DateTime  @default(now())
-  updated_at   DateTime?
+  updated_at   DateTime? @updatedAt
 }
 
 // Define the `product` model
@@ -42,7 +42,7 @@ model Product {
   price      Int
   orders     Order[]
   created_at DateTime  @default(now())
-  updated_at DateTime?
+  updated_at DateTime? @updatedAt
 }
 
 // Define the `frame` model
@@ -52,7 +52,7 @@ model Frame {
   price      Int
   glasses    Glasses[]
   created_at DateTime  @default(now())
-  updated_at DateTime?
+  updated_at DateTime? @updatedAt
 }
 
 // Define the `lens` model
@@ -62,7 +62,7 @@ model Lens {
   price      Int
   glasses    Glasses[]
   created_at DateTime  @default(now())
-  updated_at DateTime?
+  updated_at DateTime? @updatedAt
 }
 
 // Define the `glasses` model
@@ -81,7 +81,7 @@ model Glasses {
   price          Int
   orders         Order[]
   created_at     DateTime  @default(now())
-  updated_at     DateTime?
+  updated_at     DateTime? @updatedAt
 }
 
 // Define the `order` model
@@ -98,5 +98,5 @@ model Order {
   order_date    DateTime
   delivery_date DateTime?
   created_at    DateTime  @default(now())
-  updated_at    DateTime?
+  updated_at    DateTime? @updatedAt
 }
